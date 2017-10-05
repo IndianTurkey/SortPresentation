@@ -2,7 +2,6 @@ package sort;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import javax.swing.JPanel;
 
 public class MyPanel extends JPanel {
