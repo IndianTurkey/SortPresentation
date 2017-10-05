@@ -1,7 +1,5 @@
-package sort;
-
 public class Quick{
-    private void drow(int a,int i,int j,int lo,int hi,int mode){
+    private void drow(int[] a,int i,int j,int lo,int hi,int mode){
         Present.contentPane=new MyPanel(a,i,j,lo,hi,mode);
         Present.frame.setContentPane(Present.contentPane);
         Present.contentPane.updateUI();
