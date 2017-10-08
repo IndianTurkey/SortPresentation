@@ -10,7 +10,7 @@ public class MyPanel extends JPanel {
 		data=a.clone();
 		lo=l;hi=h;
 	}
-
+	
 	public MyPanel(int[] a,int x,int y,int l,int h,int m) {
 		data=a.clone();
 		arg1=x;
