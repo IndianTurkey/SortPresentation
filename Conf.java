@@ -1,3 +1,4 @@
+package sort;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.GroupLayout;
@@ -30,7 +31,7 @@ public class Conf extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel label = new JLabel("随机");
+		JLabel label = new JLabel("随机产生");
 		
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -38,6 +39,8 @@ public class Conf extends JFrame {
 		JLabel label_1 = new JLabel("个数");
 		
 		JButton btnNewButton = new JButton("初始化");
+		
+		//****************************初始化按钮鼠标监听*********************************
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public synchronized void mouseClicked(MouseEvent e) {
@@ -61,6 +64,7 @@ public class Conf extends JFrame {
                 }
 			}
 		});
+		//*****************************************************************
 		
 		qButton = new JRadioButton("快速排序");
 		qButton.setSelected(true);
@@ -80,6 +84,8 @@ public class Conf extends JFrame {
 				}
 			}
 		});
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)

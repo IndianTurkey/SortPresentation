@@ -1,3 +1,7 @@
+package sort;
+
+
+//以下排序算法来自普林斯顿红色算法书
 public class Merge {
 	private static int[] aux;
 	public synchronized void sort(int[] a){
@@ -9,11 +13,7 @@ public class Merge {
 			}
 		sort(a,0,a.length-1);
 	}
-	private void drow(int[] a,int lo,int hi,int mode){
-        Present.contentPane=new MyPanel(a,lo,hi);
-        Present.frame.setContentPane(Present.contentPane);
-        Present.contentPane.updateUI();
-    }
+	
 	public synchronized void sort(int[] a,int lo,int hi){
 		if(hi<=lo){
 			return;
@@ -22,10 +22,10 @@ public class Merge {
 		sort(a,lo,mid);
 		sort(a,mid+1,hi);
 		merge(a, lo, mid, hi);
-		drow(a, lo, hi, 1);
+		MyPanel.draw(a, lo, hi, 1);
 	}
 	public synchronized void merge(int[] a,int lo,int mid,int hi){
-		drow(a, lo, hi, 2);
+		MyPanel.draw(a, lo, hi, 2);
 		 try {
         	this.wait();
 			} catch (InterruptedException e) {
@@ -39,13 +39,15 @@ public class Merge {
 			else if(j>hi)           a[k]=aux[i++];
 			else if(aux[j]<aux[i])  a[k]=aux[j++];
 			else                    a[k]=aux[i++];
-		drow(a, lo, hi, 1);
+		MyPanel.draw(a, lo, hi, 1);
 		 try {
          	this.wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 	}
+	
+	//同步该排序，让其一步一步进行
 	public synchronized void noti(){
     	this.notify();
     }

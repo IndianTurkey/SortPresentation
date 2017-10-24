@@ -1,9 +1,8 @@
+package sort;
+
+//以下排序算法来自普林斯顿红色算法书
 public class Quick{
-    private void drow(int[] a,int i,int j,int lo,int hi,int mode){
-        Present.contentPane=new MyPanel(a,i,j,lo,hi,mode);
-        Present.frame.setContentPane(Present.contentPane);
-        Present.contentPane.updateUI();
-    }
+    
     private void exch(int[] a,int p1,int p2){
        int temp=a[p1];
        a[p1]=a[p2];
@@ -15,7 +14,7 @@ public class Quick{
         int v=a[lo];
         while(true){
             while(a[++i]<v){
-            	this.drow(a,i,j,lo,hi,2);
+            	MyPanel.draw(a,i,j,lo,hi,2);
                 try {
     				this.wait();
     			} catch (InterruptedException e) {
@@ -24,7 +23,7 @@ public class Quick{
             	if(i==hi) break;
             }
             while(v<a[--j]){
-            	this.drow(a,i,j,lo,hi,2);
+            	MyPanel.draw(a,i,j,lo,hi,2);
                 try {
                 	this.wait();
     			} catch (InterruptedException e) {
@@ -33,28 +32,28 @@ public class Quick{
             	if(j==lo) break;
             }
             if(i>=j) break;
-            this.drow(a,i,j,lo,hi,1);
+            MyPanel.draw(a,i,j,lo,hi,1);
             try {
             	this.wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
             exch(a,i,j);
-            this.drow(a,i,j,lo,hi,1);
+            MyPanel.draw(a,i,j,lo,hi,1);
             try {
             	this.wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
         }
-        this.drow(a,lo,j,lo,hi,1);
+        MyPanel.draw(a,lo,j,lo,hi,1);
         try {
         	this.wait();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
         exch(a,lo,j);
-        this.drow(a,lo,j,lo,hi,1);
+        MyPanel.draw(a,lo,j,lo,hi,1);
         try {
         	this.wait();
 		} catch (InterruptedException e) {
@@ -74,6 +73,9 @@ public class Quick{
         Present.frame.setContentPane(Present.contentPane);
         Present.contentPane.updateUI();
     }
+    
+    
+    //同步该排序，让其一步一步进行
     public synchronized void noti(){
     	this.notify();
     }
