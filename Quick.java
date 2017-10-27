@@ -22,6 +22,12 @@ public class Quick{
     			}
             	if(i==hi) break;
             }
+            MyPanel.draw(a,i,j,lo,hi,2);
+            try {
+            	this.wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
             while(v<a[--j]){
             	MyPanel.draw(a,i,j,lo,hi,2);
                 try {
@@ -46,14 +52,14 @@ public class Quick{
 				e.printStackTrace();
 			}
         }
-        MyPanel.draw(a,lo,j,lo,hi,1);
+        MyPanel.draw(a,lo,j,lo,hi,3);
         try {
         	this.wait();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
         exch(a,lo,j);
-        MyPanel.draw(a,lo,j,lo,hi,1);
+        MyPanel.draw(a,lo,j,lo,hi,3);
         try {
         	this.wait();
 		} catch (InterruptedException e) {
@@ -69,9 +75,7 @@ public class Quick{
     }
     public void sort(int[] a){
         sort(a,0,a.length-1);
-        Present.contentPane=new MyPanel(a,-1,999);
-        Present.frame.setContentPane(Present.contentPane);
-        Present.contentPane.updateUI();
+        MyPanel.draw(a,999,999,1000,999,2);
     }
     
     

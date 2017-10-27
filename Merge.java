@@ -4,7 +4,9 @@ package sort;
 //以下排序算法来自普林斯顿红色算法书
 public class Merge {
 	private static int[] aux;
-	public synchronized void sort(int[] a){
+	
+	//自顶向下
+	public synchronized void sortTD(int[] a){
 		aux=new int[a.length];
 		try {
          	this.wait();
@@ -12,6 +14,20 @@ public class Merge {
 				e.printStackTrace();
 			}
 		sort(a,0,a.length-1);
+	}
+	
+	//自底向上
+	public synchronized void sortBU(int[] a){
+		int N = a.length;
+		try {
+         	this.wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		aux=new int[N];
+		for(int sz=1;sz<N;sz=sz+sz)
+			for(int lo=0;lo<N-sz;lo+=sz+sz)
+				merge(a, lo, lo+sz-1, lo+sz+sz-1<N-1?lo+sz+sz-1:N-1);
 	}
 	
 	public synchronized void sort(int[] a,int lo,int hi){
@@ -24,6 +40,7 @@ public class Merge {
 		merge(a, lo, mid, hi);
 		MyPanel.draw(a, lo, hi, 1);
 	}
+	
 	public synchronized void merge(int[] a,int lo,int mid,int hi){
 		MyPanel.draw(a, lo, hi, 2);
 		 try {

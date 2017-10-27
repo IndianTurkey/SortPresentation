@@ -21,12 +21,13 @@ public class Conf extends JFrame {
 	public static Integer num;
 	JRadioButton mButton;
 	JRadioButton qButton;
+	JRadioButton m2Button;
 	/**
 	 * Create the frame.
 	 */
 	public Conf() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 231, 194);
+		setBounds(100, 100, 299, 194);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -61,6 +62,8 @@ public class Conf extends JFrame {
                 	Present.mThread.start();
                 }else if(qButton.isSelected()){
                 	Present.qThread.start();
+                }else if(m2Button.isSelected()){
+                	Present.m2Thread.start();
                 }
 			}
 		});
@@ -72,15 +75,27 @@ public class Conf extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (qButton.isSelected()) {
 					mButton.setSelected(false);
+					m2Button.setSelected(false);
 				}
 			}
 		});
 		
-		mButton = new JRadioButton("归并排序");
+		mButton = new JRadioButton("归并排序TD");
 		mButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (mButton.isSelected()) {
 					qButton.setSelected(false);
+					m2Button.setSelected(false);
+				}
+			}
+		});
+		
+		m2Button = new JRadioButton("归并排序BU");
+		m2Button.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				if (m2Button.isSelected()) {
+					qButton.setSelected(false);
+					mButton.setSelected(false);
 				}
 			}
 		});
@@ -90,24 +105,25 @@ public class Conf extends JFrame {
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(label)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(label_1)
+							.addGap(56))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(label)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(label_1))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnNewButton)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addComponent(qButton)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(mButton))))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(38)
-							.addComponent(btnNewButton)))
-					.addContainerGap(49, Short.MAX_VALUE))
+									.addComponent(mButton)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(m2Button)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -119,11 +135,13 @@ public class Conf extends JFrame {
 						.addComponent(label_1))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(mButton)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(mButton)
+							.addComponent(m2Button))
 						.addComponent(qButton))
 					.addGap(18)
 					.addComponent(btnNewButton)
-					.addGap(29))
+					.addGap(20))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

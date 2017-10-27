@@ -34,7 +34,7 @@ public class MyPanel extends JPanel {
 			if(i<lo||i>hi){
 				g.setColor(Color.GRAY);
 			}
-			else if((i==arg1||i==arg2)&&mode==1){
+			else if((i==arg1||i==arg2)&&(mode==1||mode==3)){
 				g.setColor(Color.RED); 
 			}else if((i==arg1||i==arg2)&&mode==2){
 				g.setColor(Color.ORANGE);
@@ -45,6 +45,8 @@ public class MyPanel extends JPanel {
 			}
 			g.fillRect(30+i*20, 30, 8, data[i]*2);
 		}
+		
+		//*****************颜色说明********************
 		g.setColor(Color.RED);
 		g.fillRect(180,500,8,8);
 		g.drawString("需要交换的项",200,510);
@@ -60,6 +62,24 @@ public class MyPanel extends JPanel {
 		g.setColor(Color.BLACK);
 		g.fillRect(320,500,8,8);
 		g.drawString("待处理项",340,510);
+		//***************************************
+		
+		//******************数组绘制*******************
+		if(part!=999){
+			for(int i=0;i<data.length;i++){
+				g.setColor(Color.black);
+				g.drawRect(30+i*20,600,20,20);
+				g.drawString(Integer.toString(data[i]), 30+i*20+2, 615);
+			}
+			g.drawLine(37+part*20, 625, 37+part*20, 635);
+			g.drawString("p", 37+part*20, 655);
+			g.drawLine(37+arg1*20, 625, 37+arg1*20, 635);
+			if(mode==3) g.drawString("lo", 37+arg1*20, 645);
+			else g.drawString("i", 37+arg1*20, 645);
+			g.drawLine(37+arg2*20, 595, 37+arg2*20, 585);
+			g.drawString("j", 37+arg2*20, 580);
+		}
+		//*******************************************
 	}
 	
 	

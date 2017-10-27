@@ -21,7 +21,7 @@ public class Present extends JFrame {
 	private static Quick quick;                      //快排
 	private static Merge merge;						 //归并
 	public static int[] data;                        //排序数组
-	public static Thread qThread,mThread;            //排序线程
+	public static Thread qThread,mThread,m2Thread;            //排序线程
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +44,12 @@ public class Present extends JFrame {
 					};
 					mThread =new Thread(){
 						public void run() {
-							merge.sort(data);
+							merge.sortTD(data);
+						}
+					};
+					m2Thread =new Thread(){
+						public void run() {
+							merge.sortBU(data);
 						}
 					};
 				} catch (Exception e) {
@@ -88,6 +93,8 @@ public class Present extends JFrame {
 					quick.noti();
 				}else if(mThread.isAlive()){
 					merge.noti();
+				}else if(m2Thread.isAlive()){
+					merge.noti();
 				}
 			}
 		});
@@ -102,11 +109,12 @@ public class Present extends JFrame {
 						quick.noti();
 					}else if(mThread.isAlive()){
 						merge.noti();
+					}else if(m2Thread.isAlive()){
+						merge.noti();
 					}
 				}
 			}
 		});
 		//*************************************************
 	}
-
 }
